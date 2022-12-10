@@ -3,10 +3,9 @@ const mongoose = require('mongoose');
 const questionSchema = new mongoose.Schema({
     author : {
         type : String,
-        required : true,
-        unique: true
+        required : true
     }, 
-    tile : {
+    title : {
         type : String,
         required : true
     },
@@ -18,11 +17,16 @@ const questionSchema = new mongoose.Schema({
         type : Boolean,
         required : false,
         default : false
+    },
+    askedOn : {
+        type : Object,
+        required: false,
+        default: new Date().toJSON()
     }
 })
 
 const Question = mongoose.model('questions', questionSchema);
 
 
-
 module.exports = Question;
+

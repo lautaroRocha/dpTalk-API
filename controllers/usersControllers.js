@@ -30,10 +30,12 @@ async function logInUser(req, res){
         if(!validPass){
             res.status(401).json({message : "credenciales inválidas"})
         }else{
-            const jsonToken = jwt.sign({tryingUser}, `${process.env.JWT_SECRET_KEY}`);
+            const jsonToken = jwt.sign({tryingUser}, `${process.env.ACCESS_TOKEN_SECRET}`);
             res.json({token: jsonToken})
         }
 } 
 }
 
 module.exports = {addUser, logInUser}
+
+
