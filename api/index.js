@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT
 const mongoose = require('mongoose')
 const cors = require('cors')
-const router = require("./routes/router")
+const router = require("../routes/router")
 
 mongoose.connect(process.env.MONGO_URL)
     .then(()=>{console.log('Connection established')})
