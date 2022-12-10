@@ -6,15 +6,11 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require("./routes/router")
 
-async function run(){
-await mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL)
     .then(()=>{console.log('Connection established')})
     .catch(error => console.log(error));
-    mongoose.set('strictQuery', true)
-    mongoose.set('bufferCommands', false);
-}
+    mongoose.set('strictQuery', false)
 
-run()
 
 app.use(express.json())  
 app.use(express.urlencoded( {extended : true } ))
@@ -27,3 +23,5 @@ app.listen(port, () => {
  );
 
 app.use(router)
+
+app.get('/', (req, res)=>{res.send('ok boy')})
