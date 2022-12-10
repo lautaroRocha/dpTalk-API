@@ -3,7 +3,7 @@
     "builds": [
         {
           "src": "package.json", 
-          "use": "start"
+          "use": "vercel-sapper"
         }
     ],
     "routes": [
