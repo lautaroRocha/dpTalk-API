@@ -11,7 +11,6 @@ async function run(){
         .then(()=>{console.log('Connection established')})
         .catch(error => console.log(error));
         mongoose.set('strictQuery', true)
-        mongoose.set('bufferCommands', false);
     }
 run()
 
