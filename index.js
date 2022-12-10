@@ -5,6 +5,7 @@ const port = process.env.PORT
 const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require("./routes/router")
+const {getUsers} = require("./controllers/usersControllers")
 
    mongoose.connect(process.env.MONGO_URL)
         .then(()=>{console.log('Connection established')})
@@ -24,6 +25,6 @@ app.listen(port, () => {
 
 app.use(router)
 
-app.get('/', (req, res)=>{res.send('Hola Vercel')})
+app.get('/', getUsers)
 
 module.exports = app;
