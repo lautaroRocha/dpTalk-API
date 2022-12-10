@@ -1,0 +1,15 @@
+{
+  "name": "dptalk-api",
+  "version": "1.0.0",
+  "description": "api for users and posts from devplaceTalk project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lautaroRocha",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}
