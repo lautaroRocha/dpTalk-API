@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "index.js",
-        "use": "node index.js"
+        "use": "start"
       }
     ],
     "routes": [
