@@ -7,12 +7,12 @@ const cors = require('cors')
 const router = require("./routes/router")
 
 async function run(){
-await mongoose.connect(process.env.MONGO_URL)
-    .then(()=>{console.log('Connection established')})
-    .catch(error => console.log(error));
-    mongoose.set('strictQuery', true)
-    mongoose.set('bufferCommands', false);
-}
+    await mongoose.connect(process.env.MONGO_URL)
+        .then(()=>{console.log('Connection established')})
+        .catch(error => console.log(error));
+        mongoose.set('strictQuery', true)
+        mongoose.set('bufferCommands', false);
+    }
 run()
 
 app.use(express.json())  
@@ -26,3 +26,7 @@ app.listen(port, () => {
  );
 
 app.use(router)
+
+app.get('/', (req, res)=>{res.send('Hola Vercel')})
+
+module.exports = app;
