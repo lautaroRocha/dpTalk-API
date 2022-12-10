@@ -4,8 +4,9 @@ const app = express();
 const port = process.env.PORT
 const mongoose = require('mongoose')
 const cors = require('cors')
+const router = require("./routes/router")
 
-mongoose.connect('mongodb://127.0.0.1:27017/Cyclops')
+mongoose.connect(process.env.MONGO_URL)
     .then(()=>{console.log('Connection established')})
     .catch(error => console.log(error));
 mongoose.set('strictQuery', true)
@@ -20,3 +21,4 @@ app.listen(port, () => {
     }
  );
 
+app.use(router)
