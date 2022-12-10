@@ -25,3 +25,5 @@ app.listen(port, () => {
 app.use(router)
 
 app.get('/', (req, res)=>{res.send('ok boy')})
+
+module.exports = app;
