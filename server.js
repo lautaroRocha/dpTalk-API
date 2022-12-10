@@ -13,7 +13,6 @@ await mongoose.connect(process.env.MONGO_URL)
     mongoose.set('strictQuery', true)
     mongoose.set('bufferCommands', false);
 }
-
 run()
 
 app.use(express.json())  
