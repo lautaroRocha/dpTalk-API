@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require("./routes/router")
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect('mongodb+srv://lautaroRocha:alaska2021@cluster0.n0ll68h.mongodb.net/?retryWrites=true&w=majority')
     .then(()=>{console.log('Connection established')})
     .catch(error => console.log(error));
     mongoose.set('strictQuery', false)
