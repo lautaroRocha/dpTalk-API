@@ -15,4 +15,13 @@ async function askQuestion(req, res){
     }
 }
 
-module.exports = {askQuestion}
+async function getQuestions(req, res){
+    try{
+        const questions = await Question.find();
+        res.json(questions)
+    }catch(error){
+        res.status(400).json(error.message)
+    }
+} 
+
+module.exports = {getQuestions, askQuestion}

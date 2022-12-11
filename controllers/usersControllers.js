@@ -12,6 +12,15 @@ async function getUsers(req, res){
         res.status(400).json(error.message)
     }
 } 
+async function getUserData(req, res){
+    const username = req.params.username;
+    try{
+        const user = await User.findOne({username : username});
+        res.json(user)
+    }catch(error){
+        res.status(400).json(error.message)
+    }
+}
 
 async function addUser(req, res){
     const newUser =  {
@@ -45,6 +54,6 @@ async function logInUser(req, res){
 } 
 }
 
-module.exports = {getUsers, addUser, logInUser}
+module.exports = {getUserData, getUsers, addUser, logInUser}
 
 

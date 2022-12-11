@@ -7,4 +7,6 @@ usersRouter.post("/login", handleUsers.logInUser)
 
 usersRouter.get('/', handleUsers.getUsers)
 
+usersRouter.get('/:username', handleUsers.getUserData)
+
 module.exports = usersRouter;
