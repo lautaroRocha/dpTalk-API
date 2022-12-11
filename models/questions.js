@@ -22,6 +22,11 @@ const questionSchema = new mongoose.Schema({
         type : Object,
         required: false,
         default: new Date().toJSON()
+    },
+    comments : {
+        type : Array,
+        required: false,
+        default: []
     }
 })
 
