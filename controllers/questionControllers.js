@@ -24,4 +24,17 @@ async function getQuestions(req, res){
     }
 } 
 
-module.exports = {getQuestions, askQuestion}
+async function getOneQuestion(req, res){
+    const questionId = req.params.questionId;
+    try{
+        const qstn = await Question.findOne({_id : questionId});
+        res.json(qstn)
+    }catch(error){
+        res.status(400).json(error.message)
+    }
+}
+
+
+
+
+module.exports = {getOneQuestion, getQuestions, askQuestion}
