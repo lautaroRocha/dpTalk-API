@@ -1,8 +1,10 @@
 const answersRouter = require('express').Router()
-const postAnswer = require("../../controllers/answersControllers")
+const handleAnswers = require("../../controllers/answersControllers")
 const authToken = require("../../middleware/authToken")
 
-answersRouter.post("/", authToken, postAnswer)
+answersRouter.get("/:questionId", authToken, handleAnswers.getAnswersFromQuestion)
+
+answersRouter.post("/", authToken, handleAnswers.postAnswer)
 
 
 

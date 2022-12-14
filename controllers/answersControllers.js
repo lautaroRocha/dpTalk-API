@@ -15,4 +15,14 @@ async function postAnswer(req, res){
     }
 }
 
-module.exports = postAnswer
+async function getAnswersFromQuestion(req, res){
+    const questionId = req.params.questionId
+    try{
+        const allAnswers = await Answer.find({question : questionId})
+        res.json(allAnswers)
+    }catch(error){
+        res.status(400).json({error : error.message})
+    }
+}
+
+module.exports = {postAnswer, getAnswersFromQuestion}
