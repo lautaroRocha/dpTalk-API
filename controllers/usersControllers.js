@@ -28,13 +28,12 @@ async function addUser(req, res){
         email: req.body.email,
         password : bcrypt.hashSync(req.body.password, 10)
     }
-    console.log(newUser)
     try{
         const user = new User(newUser);
         await user.save();
         res.json({newUser : user})
     }catch(error){
-        res.status(400).json(error.message)
+        res.status(400).json(error)
     }
 } 
 
