@@ -1,7 +1,8 @@
 const usersRouter = require('express').Router()
 const handleUsers = require("../../controllers/usersControllers")
+const {ValidateUser} = require("../../models/user")
 
-usersRouter.post("/signin", handleUsers.addUser)
+usersRouter.post("/signin", ValidateUser, handleUsers.addUser)
 
 usersRouter.post("/login", handleUsers.logInUser)
 

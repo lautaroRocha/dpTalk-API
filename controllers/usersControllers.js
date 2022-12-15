@@ -1,4 +1,4 @@
-const User = require("../models/user")
+const {User} = require("../models/user")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -33,8 +33,13 @@ async function addUser(req, res){
         await user.save();
         res.json({newUser : user})
     }catch(error){
-        res.status(400).json(error)
-    }
+        let errMsg;
+        if (error.code == 11000) {
+          errMsg = "Ya existe " + Object.keys(error.keyValue)[0] ;
+        } else {
+          errMsg = error.message;
+        }
+        res.status(400).json({message: errMsg })}
 } 
 
 async function logInUser(req, res){
