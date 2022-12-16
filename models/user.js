@@ -34,8 +34,10 @@ const ValidateUser = (req, res, next) => {
             'string.empty': "Ingresa un email",
             'string.email' : "Ingresa un email válido"
           }),
-        password: Joi.string().min(9)
+        password: Joi.string().min(9).alphanum()
             .messages({
+              'string.min' : 'La contraseña debe tener 9 carácteres como mínimo',
+              'string.alphanum' : 'La contraseña no puede contener carácteres especiales o espacíos vacíos',
               'string.empty': "Ingrese una contraseña",
 
             })
