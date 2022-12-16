@@ -1,4 +1,6 @@
-const Answer = require("../models/answers")
+const {Answer} = require("../models/answers")
+
+
 
 async function postAnswer(req, res){
     const newAnswer = {
