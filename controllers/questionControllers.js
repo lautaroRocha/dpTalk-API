@@ -1,4 +1,5 @@
-const Question = require("../models/questions")
+const {Question} = require("../models/questions")
+
 
 async function askQuestion(req, res){
     const newQuestion = {

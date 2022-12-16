@@ -47,11 +47,11 @@ async function logInUser(req, res){
     const {username, password} = req.body
     const tryingUser = await User.findOne({username : username})
     if(!tryingUser){
-        res.status(401).json({message : "No hay ningun usuario con ese username"})
+        res.status(401).json({message : "No hay ningun usuario con ese nombre"})
     }else{
         const validPass = bcrypt.compareSync(password, tryingUser.password)
         if(!validPass){
-            res.status(401).json({message : "Credenciales inválidas"})
+            res.status(401).json({message : "Contraseña incorrecta"})
         }else{
             const jsonToken = jwt.sign({tryingUser}, `${process.env.ACCESS_TOKEN_SECRET}`);
             res.json({token: jsonToken})
