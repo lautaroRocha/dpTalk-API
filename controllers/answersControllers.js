@@ -27,4 +27,30 @@ async function getAnswersFromQuestion(req, res){
     }
 }
 
-module.exports = {postAnswer, getAnswersFromQuestion}
+async function likeAnswer(req, res){
+    const answerId = req.params.answerId
+    try{
+    const currentAnswer = await Answer.findOne({_id : answerId})
+    let currentLikes = currentAnswer.likes
+    let newLikes = currentLikes + 1;
+    const answer = await Answer.updateOne({_id : answerId}, {likes : newLikes})
+    res.json(answer)
+    }catch(error){
+        res.status(400).json({error: error.message})
+    }
+}
+
+async function dislikeAnswer(req, res){
+    const answerId = req.params.answerId
+    try{
+    const currentAnswer = await Answer.findOne({_id : answerId})
+    let currentDislikes = currentAnswer.dislikes
+    let newDislikes = currentDislikes + 1;
+    const answer = await Answer.updateOne({_id : answerId}, {dislikes : newDislikes})
+    res.json(answer)
+    }catch(error){
+        res.status(400).json({error: error.message})
+    }
+}
+
+module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer}

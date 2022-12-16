@@ -24,6 +24,16 @@ const answerSchema = new mongoose.Schema({
         type : Object,
         required: false,
         default: new Date().toJSON()
+    },
+    likes: {
+        type : Number,
+        required: false,
+        default: 0
+    },
+    dislikes: {
+        type : Number,
+        required: false,
+        default: 0
     }
 })
 
