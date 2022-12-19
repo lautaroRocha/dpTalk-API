@@ -41,11 +41,10 @@ const Answer = mongoose.model('answers', answerSchema);
 
 const ValidateAnswer = (req, res, next) => {
     const schema = Joi.object({
-        author: Joi.string().min(4).max(30).alphanum()
+        author: Joi.string().min(4).max(30)
         .messages({
             'string.empty': "Ingresa un autor de la respuesta",
             'string.min': "El nombre de autor debe tener 4 letras mínimo",
-            'string.alphanum' : 'El nombre de autor no puede contener carácteres especiales o espacíos vacíos',
             'string.max': "El nombre de autor debe tener 30 letras máximo",
         }),
         question: Joi.string().min(24).max(24)
