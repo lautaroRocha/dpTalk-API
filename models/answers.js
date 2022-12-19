@@ -26,14 +26,14 @@ const answerSchema = new mongoose.Schema({
         default: new Date().toJSON()
     },
     likes: {
-        type : Number,
+        type : Array,
         required: false,
-        default: 0
+        default: []
     },
     dislikes: {
         type : Number,
         required: false,
-        default: 0
+        default: []
     }
 })
 

@@ -28,29 +28,27 @@ async function getAnswersFromQuestion(req, res){
 }
 
 async function likeAnswer(req, res){
-    const answerId = req.params.answerId
-    try{
-    const currentAnswer = await Answer.findOne({_id : answerId})
-    let currentLikes = currentAnswer.likes
-    let newLikes = currentLikes + 1;
-    const answer = await Answer.updateOne({_id : answerId}, {likes : newLikes})
-    res.json(answer)
-    }catch(error){
-        res.status(400).json({error: error.message})
-    }
+    const userId = req.body.userId;
+    try {
+        const data = await Answer.findById(req.params.answerId);
+        data.likes.push(userId);
+        await data.save();
+        res.send({ message: 'Like exitoso' });
+      } catch (error) {
+        res.status(500).send({ message: 'Hubo un problema mandando tu opinión' });
+      }
 }
 
 async function dislikeAnswer(req, res){
-    const answerId = req.params.answerId
-    try{
-    const currentAnswer = await Answer.findOne({_id : answerId})
-    let currentDislikes = currentAnswer.dislikes
-    let newDislikes = currentDislikes + 1;
-    const answer = await Answer.updateOne({_id : answerId}, {dislikes : newDislikes})
-    res.json(answer)
-    }catch(error){
-        res.status(400).json({error: error.message})
-    }
+    const userId = req.body.userId;
+    try {
+        const data = await Answer.findById(req.params.answerId);
+        data.dislikes.push(userId);
+        await data.save();
+        res.send({ message: 'Dislike exitoso' });
+      } catch (error) {
+        res.status(500).send({ message: 'Hubo un problema mandando tu opinión' });
+      }
 }
 
 module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer}
