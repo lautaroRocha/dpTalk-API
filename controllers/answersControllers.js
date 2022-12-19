@@ -29,7 +29,6 @@ async function getAnswersFromQuestion(req, res){
 
 async function likeAnswer(req, res){
     const userId = req.body.userId;
-    console.log(req.body)
     try {
         const data = await Answer.findById(req.params.answerId);
         if(!data.likes.includes(userId)){
@@ -49,7 +48,6 @@ async function likeAnswer(req, res){
 
 async function dislikeAnswer(req, res){
     const userId = req.body.userId;
-    console.log(req.body)
     try {
         const data = await Answer.findById(req.params.answerId);
         if(!data.dislikes.includes(userId)){
@@ -67,4 +65,15 @@ async function dislikeAnswer(req, res){
       }
 }
 
-module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer}
+async function setAsCorrect(req, res){
+    try{
+        const data = await Answer.findById(req.params.answerId);
+        data.status = true;
+        await data.save()
+        res.send({ message: 'Marcada como correcta' });
+    }catch(error){
+        res.status(500).send({message : error})
+    }
+}
+
+module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer, setAsCorrect}

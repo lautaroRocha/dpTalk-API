@@ -6,5 +6,6 @@ const authToken = require("../../middleware/authToken")
 questionRouter.post("/", [authToken, ValidateQuestion], handleQuestions.askQuestion)
 questionRouter.get("/",  handleQuestions.getQuestions)
 questionRouter.get("/:questionId", handleQuestions.getOneQuestion)
+questionRouter.patch("/:questionId", handleQuestions.setAsResolved)
 
 module.exports = questionRouter;

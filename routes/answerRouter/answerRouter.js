@@ -11,5 +11,8 @@ answersRouter.patch("/like/:answerId", authToken, handleAnswers.likeAnswer)
 
 answersRouter.patch("/dislike/:answerId", authToken, handleAnswers.dislikeAnswer)
 
+answersRouter.patch("/:answerId", authToken, handleAnswers.setAsCorrect)
+
+
 
 module.exports = answersRouter;
