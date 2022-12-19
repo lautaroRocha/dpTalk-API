@@ -29,11 +29,19 @@ async function getAnswersFromQuestion(req, res){
 
 async function likeAnswer(req, res){
     const userId = req.body.userId;
+    console.log(req.body)
     try {
         const data = await Answer.findById(req.params.answerId);
-        data.likes.push(userId);
-        await data.save();
-        res.send({ message: 'Like exitoso' });
+        if(!data.likes.includes(userId)){
+            data.likes.push(userId);
+            await data.save();
+            res.send({ message: 'Like exitoso' });
+        }else{
+            const idxToRemove = data.likes.indexOf(userId);
+            data.likes.splice(idxToRemove, 1)
+            await data.save()
+            res.send({ message: 'Like removido' });
+        }
       } catch (error) {
         res.status(500).send({ message: 'Hubo un problema mandando tu opinión' });
       }
@@ -41,11 +49,19 @@ async function likeAnswer(req, res){
 
 async function dislikeAnswer(req, res){
     const userId = req.body.userId;
+    console.log(req.body)
     try {
         const data = await Answer.findById(req.params.answerId);
-        data.dislikes.push(userId);
-        await data.save();
-        res.send({ message: 'Dislike exitoso' });
+        if(!data.dislikes.includes(userId)){
+            data.dislikes.push(userId);
+            await data.save();
+            res.send({ message: 'Disike exitoso' });
+        }else{
+            const idxToRemove = data.dislikes.indexOf(userId);
+            data.dislikes.splice(idxToRemove, 1)
+            await data.save()
+            res.send({ message: 'Dislike removido' });
+        }
       } catch (error) {
         res.status(500).send({ message: 'Hubo un problema mandando tu opinión' });
       }

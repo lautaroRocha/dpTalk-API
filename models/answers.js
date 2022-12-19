@@ -31,7 +31,7 @@ const answerSchema = new mongoose.Schema({
         default: []
     },
     dislikes: {
-        type : Number,
+        type : Array,
         required: false,
         default: []
     }

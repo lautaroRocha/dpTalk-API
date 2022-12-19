@@ -7,9 +7,9 @@ answersRouter.get("/:questionId", handleAnswers.getAnswersFromQuestion)
 
 answersRouter.post("/", [authToken, ValidateAnswer], handleAnswers.postAnswer)
 
-answersRouter.patch("/like/:answerId", [authToken, ValidateAnswer], handleAnswers.likeAnswer)
+answersRouter.patch("/like/:answerId", authToken, handleAnswers.likeAnswer)
 
-answersRouter.patch("/dislike/:answerId", [authToken, ValidateAnswer], handleAnswers.dislikeAnswer)
+answersRouter.patch("/dislike/:answerId", authToken, handleAnswers.dislikeAnswer)
 
 
 module.exports = answersRouter;
