@@ -21,7 +21,7 @@ async function getQuestions(req, res){
         const questions = await Question.find();
         res.json(questions)
     }catch(error){
-        res.status(400).json(error.message)
+        res.status(505).json({message : "Hubo un error con nuestros servidores, intentá más tarde"})
     }
 } 
 
