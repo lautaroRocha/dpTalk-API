@@ -7,5 +7,6 @@ questionRouter.post("/", [authToken, ValidateQuestion], handleQuestions.askQuest
 questionRouter.get("/",  handleQuestions.getQuestions)
 questionRouter.get("/:questionId", handleQuestions.getOneQuestion)
 questionRouter.patch("/:questionId", handleQuestions.setAsResolved)
+questionRouter.get("/by/:username", authToken, handleQuestions.getQuestionsByUser)
 
 module.exports = questionRouter;

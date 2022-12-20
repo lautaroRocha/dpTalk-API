@@ -27,6 +27,17 @@ async function getAnswersFromQuestion(req, res){
     }
 }
 
+async function getAnswersByUser(req, res){
+    const username = req.params.username;
+    console.log(username)
+    try{
+        const answersByUser = await Answer.find({author : username})
+        res.json(answersByUser)
+    }catch(error){
+        res.status(500).json({message : 'Hubo un error, intentá de nuevo más tarde'})
+    }
+}
+
 async function likeAnswer(req, res){
     const userId = req.body.userId;
     try {
@@ -76,4 +87,4 @@ async function setAsCorrect(req, res){
     }
 }
 
-module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer, setAsCorrect}
+module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer, setAsCorrect, getAnswersByUser}
