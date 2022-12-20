@@ -1,4 +1,5 @@
-const Question = require("../models/questions")
+const {Question} = require("../models/questions")
+
 
 async function askQuestion(req, res){
     const newQuestion = {
@@ -20,7 +21,7 @@ async function getQuestions(req, res){
         const questions = await Question.find();
         res.json(questions)
     }catch(error){
-        res.status(400).json(error.message)
+        res.status(505).json({message : "Hubo un error con nuestros servidores, intentá más tarde"})
     }
 } 
 
@@ -34,7 +35,19 @@ async function getOneQuestion(req, res){
     }
 }
 
+async function setAsResolved(req, res){
+    const questionId = req.params.questionId;
+    try{
+        const qstn = await Question.findOne({_id : questionId});
+        qstn.status = true;
+        await qstn.save();
+        res.status(200).send({message : "Guardado"})
+    }catch(error){
+        res.status(500).send({message : error})    
+    }
+}
 
 
 
-module.exports = {getOneQuestion, getQuestions, askQuestion}
+
+module.exports = {getOneQuestion, getQuestions, askQuestion, setAsResolved}
