@@ -10,4 +10,6 @@ usersRouter.get('/', handleUsers.getUsers)
 
 usersRouter.get('/:username', handleUsers.getUserData)
 
+usersRouter.patch('/profile-pic', handleUsers.updateProfilePicture)
+
 module.exports = usersRouter;

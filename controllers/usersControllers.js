@@ -59,6 +59,18 @@ async function logInUser(req, res){
 } 
 }
 
-module.exports = {getUserData, getUsers, addUser, logInUser}
+async function updateProfilePicture(req, res){
+    const profilePicUrl = req.body.picture;
+    const sentUsername = req.body.username
+    console.log(profilePicUrl)
+    try{
+        const updateUser = await User.updateOne({username : sentUsername}, {profilePic : profilePicUrl})
+        res.send(updateUser)
+    }catch(error){
+        res.status(500).send(error.message)
+    }
+}
+
+module.exports = {getUserData, getUsers, addUser, logInUser, updateProfilePicture}
 
 
