@@ -62,7 +62,6 @@ async function logInUser(req, res){
 async function updateProfilePicture(req, res){
     const profilePicUrl = req.body.picture;
     const sentUsername = req.body.username
-    console.log(profilePicUrl)
     try{
         const updateUser = await User.updateOne({username : sentUsername}, {profilePic : profilePicUrl})
         res.send(updateUser)

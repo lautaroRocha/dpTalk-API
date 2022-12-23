@@ -1,7 +1,5 @@
 const {Answer} = require("../models/answers");
 
-
-
 async function postAnswer(req, res){
     const newAnswer = {
         author : req.body.author,
@@ -29,7 +27,6 @@ async function getAnswersFromQuestion(req, res){
 
 async function getAnswersByUser(req, res){
     const username = req.params.username;
-    console.log(username)
     try{
         const answersByUser = await Answer.find({author : username})
         res.json(answersByUser)
