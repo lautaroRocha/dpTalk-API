@@ -6,7 +6,7 @@ function authenticateToken(req, res, next){
     if(!token){
         res.status(400).json({message : 'no token'})
     }else{
-        jwt.verify(token, ASDLAHSDJHVAGDAISD789, (err)=>{
+        jwt.verify(token, 'ASDLAHSDJHVAGDAISD789', (err)=>{
             if(err){
                 res.status(403).json({message: "invalid token"})
             }else{
