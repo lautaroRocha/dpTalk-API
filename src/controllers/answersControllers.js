@@ -1,6 +1,4 @@
-const {Answer} = require("../models/answers")
-
-
+const {Answer} = require("../models/answers");
 
 async function postAnswer(req, res){
     const newAnswer = {
@@ -24,6 +22,16 @@ async function getAnswersFromQuestion(req, res){
         res.json(allAnswers)
     }catch(error){
         res.status(400).json({error : error.message})
+    }
+}
+
+async function getAnswersByUser(req, res){
+    const username = req.params.username;
+    try{
+        const answersByUser = await Answer.find({author : username})
+        res.json(answersByUser)
+    }catch(error){
+        res.status(500).json({message : 'Hubo un error, intentá de nuevo más tarde'})
     }
 }
 
@@ -76,4 +84,4 @@ async function setAsCorrect(req, res){
     }
 }
 
-module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer, setAsCorrect}
+module.exports = {postAnswer, getAnswersFromQuestion, likeAnswer, dislikeAnswer, setAsCorrect, getAnswersByUser}

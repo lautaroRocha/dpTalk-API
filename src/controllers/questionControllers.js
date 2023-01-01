@@ -25,6 +25,16 @@ async function getQuestions(req, res){
     }
 } 
 
+async function getQuestionsByUser(req, res){
+    const username = req.params.username;
+    try{
+        const questionsByUser = await Question.find({author : username})
+        res.json(questionsByUser)
+    }catch(error){
+        res.status(500).json({message : 'Hubo un error, intentá de nuevo más tarde'})
+    }
+}
+
 async function getOneQuestion(req, res){
     const questionId = req.params.questionId;
     try{
@@ -50,4 +60,4 @@ async function setAsResolved(req, res){
 
 
 
-module.exports = {getOneQuestion, getQuestions, askQuestion, setAsResolved}
+module.exports = {getOneQuestion, getQuestions, askQuestion, setAsResolved, getQuestionsByUser}

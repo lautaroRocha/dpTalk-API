@@ -13,6 +13,6 @@ answersRouter.patch("/dislike/:answerId", authToken, handleAnswers.dislikeAnswer
 
 answersRouter.patch("/:answerId", authToken, handleAnswers.setAsCorrect)
 
-
+answersRouter.get('/by/:username', authToken, handleAnswers.getAnswersByUser)
 
 module.exports = answersRouter;
