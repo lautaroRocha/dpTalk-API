@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-const SECRET = 'ASDLAHSDJHVAGDAISD789';
 
 async function getUsers(req, res){
     try{
@@ -54,7 +53,7 @@ async function logInUser(req, res){
         if(!validPass){
             res.status(401).json({message : "Contraseña incorrecta"})
         }else{
-            const jsonToken = jwt.sign({tryingUser}, SECRET);
+            const jsonToken = jwt.sign({tryingUser},  process.env.SECRET_ACCESS_TOKEN);
             res.json({token: jsonToken})
         }
 } 
