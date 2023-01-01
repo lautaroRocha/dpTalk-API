@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const SECRET = ASDLAHSDJHVAGDAISD789;
+const SECRET = 'ASDLAHSDJHVAGDAISD789';
 
 function authenticateToken(req, res, next){
     const token = req.headers['x-access'];
