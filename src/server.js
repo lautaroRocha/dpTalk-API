@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 
 
 
-httpServer.listen(port);
+httpServer.listen(process.env.SOCKET_PORT);
 
 app.use(router)
 
