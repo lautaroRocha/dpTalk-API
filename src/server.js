@@ -43,5 +43,4 @@ app.listen(port, () => {
 
 app.use(router)
 
-module.exports = io 
 
