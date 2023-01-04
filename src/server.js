@@ -41,10 +41,8 @@ io.on('connection', (socket) => {
 
 
 
-
-httpServer.listen(process.env.SOCKET_PORT);
-
 app.use(router)
+app.get('/socket', httpServer)
 
 module.exports = io 
 
