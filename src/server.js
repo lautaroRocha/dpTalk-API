@@ -7,7 +7,7 @@ const cors = require('cors')
 // const { createServer } = require("http");
 // const { Server } = require("socket.io");
 const router = require("./routes/router")
-const httpServer = createServer(app);
+// const httpServer = createServer(app);
 
 // const io = new Server(httpServer,  {
 //     cors: {
