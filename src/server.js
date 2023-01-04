@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 
 
 
-httpServer.listen(8000);
+httpServer.listen(app);
 
 app.use(router)
 
