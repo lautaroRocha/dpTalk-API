@@ -42,7 +42,7 @@ io.on('connection', (socket) => {
 
 
 app.use(router)
-app.get('/socket', httpServer)
+app.use('/socket', httpServer)
 
 module.exports = io 
 
