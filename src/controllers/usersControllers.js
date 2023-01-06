@@ -73,11 +73,12 @@ async function updateProfilePicture(req, res){
 async function sendNotification(req, res){
     const {message} = req.body
     const {receiver} = req.body
+    const {date} = req.body;
     try{
         const receiverUser = await User.findOne({username : receiver})
-        receiverUser.notifications.push(message)
+        receiverUser.notifications.push({notification: message, at:date})
         await receiverUser.save()
-        res.send(receiverUser.notifications)
+        res.send('notified')
     }catch(error){
         res.status(500).send(error.message)
     }
