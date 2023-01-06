@@ -14,4 +14,9 @@ usersRouter.get('/:username', handleUsers.getUserData)
 
 usersRouter.patch('/profile-pic', authToken, handleUsers.updateProfilePicture)
 
+usersRouter.post('/notification', handleUsers.sendNotification)
+
+usersRouter.get('/notification/:user', handleUsers.getNotification)
+
+
 module.exports = usersRouter;

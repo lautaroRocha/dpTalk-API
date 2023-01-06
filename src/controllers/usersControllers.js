@@ -70,6 +70,29 @@ async function updateProfilePicture(req, res){
     }
 }
 
-module.exports = {getUserData, getUsers, addUser, logInUser, updateProfilePicture}
+async function sendNotification(req, res){
+    const {message} = req.body
+    const {receiver} = req.body
+    try{
+        const receiverUser = await User.findOne({username : receiver})
+        receiverUser.notifications.push(message)
+        await receiverUser.save()
+        res.send(receiverUser.notifications)
+    }catch(error){
+        res.status(500).send(error.message)
+    }
+}
+
+async function getNotification(req, res){
+    const {user} = req.params;
+    try{
+        const selectedUser = await User.findOne({username : user})
+        res.json({notifications : selectedUser.notifications})
+    }catch(error){
+        res.status(400).json({message : 'Hubo un error'})
+    }
+}
+
+module.exports = {getUserData, getUsers, addUser, logInUser, updateProfilePicture, sendNotification, getNotification}
 
 
