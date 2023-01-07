@@ -74,9 +74,10 @@ async function sendNotification(req, res){
     const {message} = req.body
     const {receiver} = req.body
     const {date} = req.body;
+    const {link} = req.body
     try{
         const receiverUser = await User.findOne({username : receiver})
-        receiverUser.notifications.push({notification: message, at:date})
+        receiverUser.notifications.push({notification: message, at:date, href: link, read: false})
         await receiverUser.save()
         res.send('notified')
     }catch(error){
@@ -94,6 +95,19 @@ async function getNotification(req, res){
     }
 }
 
-module.exports = {getUserData, getUsers, addUser, logInUser, updateProfilePicture, sendNotification, getNotification}
+async function updateReadValueOnNotifications(req, res){
+    const {user} = req.params
+    try{
+        const selectedUser = await User.findOne({username : user})
+        selectedUser.notifications.forEach( noti => noti.read = true)
+        await selectedUser.save()
+        res.send(selectedUser.notifications)
+    }catch(error){
+        res.status(505).send(error)
+    }
+};
+
+
+module.exports = {getUserData, getUsers, addUser, logInUser, updateProfilePicture, sendNotification, getNotification, updateReadValueOnNotifications}
 
 
