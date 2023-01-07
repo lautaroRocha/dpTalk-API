@@ -98,10 +98,8 @@ async function getNotification(req, res){
 async function updateReadValueOnNotifications(req, res){
     const {user} = req.params
     try{
-        const selectedUser = await User.findOne({username : user})
-        selectedUser.notifications.forEach( noti => noti.read = true)
-        await selectedUser.save()
-        res.send(selectedUser.notifications)
+        const update = await User.updateMany({username : user}, {$notifications: {read: true}})
+        res.send(update.modifiedCount)
     }catch(error){
         res.status(505).send(error)
     }
