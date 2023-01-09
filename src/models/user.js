@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : false,
         default: "https://media-exp1.licdn.com/dms/image/C4D0BAQGlw01EDZIgVg/company-logo_200_200/0/1624978925235?e=2147483647&v=beta&t=dYqkqfAhVTDGr1GW7_oV1FC11wXeGSx8Ywadhc4KmzA"
+    },
+    notifications: {
+        type: Array,
+        required: false,
+        default: []
     }
 })
 
