@@ -6,7 +6,6 @@ const port = process.env.PORT
 const cors = require('cors')
 const router = require("./routes/router")
 
-
 app.use(express.json())  
 app.use(express.urlencoded( {extended : false } ))
 app.use(cors())
